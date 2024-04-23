@@ -9,7 +9,7 @@ Follow these steps to set up:
 
 1. **Clone the Repository**
     ```
-    git clone https://github.com/CYQIQ/MultiCoT.git
+    git clone https://github.com/aaliyan1230/chain-of-table-langgraph.git
     ```
 2. **Install Dependencies**
     Navigate to the repository directory and run:
