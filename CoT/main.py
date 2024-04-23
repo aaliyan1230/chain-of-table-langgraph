@@ -9,9 +9,6 @@ from CoTAgent import (
 )
 from prompts import SYSTEM_PROMPT
 
-os.environ["OPENAI_API_KEY"] = "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"
-os.environ["LANGCHAIN_TRACING_V2"] = "false"
-
 
 file_paths = input("Enter space separated csv, xlsx file paths: \n").split()
 paths = [path.strip() for path in file_paths]
