@@ -1,7 +1,7 @@
 # CHAIN OF TABLE LANGGRAPH
 
 ## Overview
-this repository that demonstrates [Chain-of-Table](https://arxiv.org/abs/2401.04398) reasoning on multiple tables, which is SOTA research by folks at Google and Stanford powered by [LangGraph](https://github.com/langchain-ai/langgraph).
+This repository that demonstrates [Chain-of-Table](https://arxiv.org/abs/2401.04398) reasoning on multiple tables, which is SOTA research by folks at Google and Stanford powered by [LangGraph](https://github.com/langchain-ai/langgraph).
 
 ## Getting started
 
