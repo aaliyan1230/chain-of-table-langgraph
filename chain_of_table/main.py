@@ -1,3 +1,4 @@
+from prompts import SYSTEM_PROMPT
 import pandas as pd
 import sys
 from utils import load_files
@@ -10,7 +11,6 @@ import traceback
 from utils import get_action, get_last_chains
 
 # pydantic
-from typing import Annotated, Sequence
 
 # langchain
 from langchain_openai import ChatOpenAI
@@ -24,7 +24,6 @@ from langgraph.prebuilt import ToolExecutor, ToolInvocation
 from langgraph.graph import StateGraph, END
 
 load_dotenv(sys.path[0] + "/.env")
-from prompts import SYSTEM_PROMPT
 
 
 file_paths = input("Enter space separated csv, xlsx file paths: \n").split()
@@ -66,7 +65,7 @@ def evaluate_pandas_chain(
 ):
     """Use this to execute the chain of pandas code on the dataframes"""
 
-    name = "evaluate_pandas_chain"
+    name = "evaluate_pandas_chain"  # noqa
 
     try:
         action = get_action(chain)  # .replace(toreplace, 'inter')
@@ -81,7 +80,7 @@ def evaluate_pandas_chain(
 
         return intermediate, action, inter
 
-    except Exception as e:
+    except Exception:
         return f"An exception occured: {traceback.format_exc()}", action, None
 
 
@@ -91,11 +90,11 @@ def view_pandas_dataframes(
     df_list: Annotated[
         Sequence[str],
         "List of maximum 3 pandas dataframes you want to look at, e.g. [df1, df2, df3]",
-    ]
+    ],
 ):
     """Use this to view the head(10) of dataframes to answer your question"""
 
-    name = "view_pandas_dataframes"
+    name = "view_pandas_dataframes"  # noqa
 
     markdown_str = "Here are .head(10) of the dataframes you requested to see:\n"
     for df in df_list:
@@ -162,7 +161,6 @@ def should_continue(state):
 
 # Define the function that calls the model
 def call_model(state):
-
     response = model.invoke(state)
     # We return a list, because this will get added to the existing list
     return {"messages": [response]}
@@ -185,7 +183,6 @@ def call_tool(state):
         last_message.additional_kwargs["function_call"]["name"]
         == "view_pandas_dataframes"
     ):
-
         # We construct an ToolInvocation from the function_call
         action = ToolInvocation(
             tool=last_message.additional_kwargs["function_call"]["name"],
@@ -203,7 +200,6 @@ def call_tool(state):
         last_message.additional_kwargs["function_call"]["name"]
         == "evaluate_pandas_chain"
     ):
-
         # We construct an ToolInvocation from the function_call
         action = ToolInvocation(
             tool=last_message.additional_kwargs["function_call"]["name"],
@@ -236,7 +232,6 @@ def call_tool(state):
             return {"messages": [function_message]}
 
         else:
-
             success_info = f"""
             You have previously performed the actions: 
             {state['actions']}
@@ -334,17 +329,17 @@ for output in app.stream(inputs, {"recursion_limit": 40}):
                 print("`viewing dataframes`")
             else:
                 if "actions" in value.keys():
-                    print(f"🛠️ Current action:")
+                    print("🛠️ Current action:")
                     print(f"`{value['actions']}`")
-                    print(f"Current output:")
+                    print("Current output:")
                     print(value["inter"])
                 else:
-                    print(f"⚠️ An error occured, retrying...")
+                    print("⚠️ An error occured, retrying...")
         else:
             print("🏁 Finishing up...")
-            print(f"Final output:")
+            print("Final output:")
             print(value["inter"])
-            print(f"Final action chain:")
+            print("Final action chain:")
             print(" -> ".join(value["actions"]) + " -> <END>")
 
         print("---")
