@@ -1,3 +1,5 @@
+from typing import Annotated, Sequence
+import pandas as pd
 import pandas as pd
 
 
@@ -19,10 +21,10 @@ def load_files(
 # parser for action chain
 def get_action(actions):
     if "<BEGIN>" in actions:
-        a = actions.split("->")[1].strip()
+        a = actions.split('->')[1].strip()
     else:
-        a = actions.split("->")[0].strip()
-    return a
+        a = actions.split('->')[0].strip()
+    return  a
 
 
 def save_new_chain(user_query, output_chain, answer):
@@ -38,8 +40,8 @@ def save_new_chain(user_query, output_chain, answer):
 
 
 def get_last_chains(how_many=5):
-    try:  # noqa
-        df = pd.read_csv("./data/chains.csv", index_col=0)  # noqa
-        return df.tail(how_many)  # noqa
-    except:  # noqa
-        return ""  # noqa
+    try:
+        df = pd.read_csv("./data/chains.csv", index_col=0)
+        return df.tail(how_many)
+    except:
+        return ""
