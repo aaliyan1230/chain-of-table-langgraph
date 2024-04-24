@@ -29,14 +29,6 @@ load_dotenv(sys.path[0] + "/.env")
 file_paths = input("Enter space separated csv, xlsx file paths: \n").split()
 paths = [path.strip() for path in file_paths]
 
-questions_str = """
-df1:  Choose the coworkers you recognize as the most valuable players (MVP) in the company due to their outstanding contribution to the company’s performance and productivity.
-df2:  Choose the coworkers you think have the most untapped potential.
-df3:  Who do you like to collaborate the most with?
-df4:  With which coworkers do you feel the most tension or have the most conflicts?
-df5:  Which coworker is the most difficult to collaborate with?
-df6:  Metadata about the persons in the survey"""
-
 
 paths = [
     "./data/customers-100.csv",
@@ -51,7 +43,7 @@ df_descriptions = []
 for i, df in enumerate(df_list):
     df_descriptions.append(f"df{i+1}: {df.shape[0]} rows, {df.shape[1]} columns")
 
-questions_str = "\n".join(df_descriptions)
+df_descriptions = "\n".join(df_descriptions)
 
 
 # function to evaluate the next action in the chain
@@ -123,7 +115,7 @@ prompt = ChatPromptTemplate.from_messages(
 
 prompt = prompt.partial(num_dfs=len(df_list))
 prompt = prompt.partial(tool_names=", ".join([tool.name for tool in tools]))
-prompt = prompt.partial(questions_str=questions_str)
+prompt = prompt.partial(df_descriptions=df_descriptions)
 
 # passing in past successful queries
 chain_examples = ""
@@ -306,9 +298,10 @@ app = workflow.compile()
 # user_query = "Return how many times Steven Rollins was selected for MVP. Return also the number of grades this employee received for each MVP reason."
 user_query = "Which team has the most votes for being difficult to work with?"
 # user_query = "Hi how are you, how many types of bananas are there in Pakistan"
-user_query = input("Enter your query")
+user_query = input("Enter your query: ")
 
 user_query = "How many customers subscribed in 2022 ?"
+user_query = "How many records are there"
 
 
 inputs = {
