@@ -23,9 +23,13 @@ Logic to create chain for: We first need to select the appropriate dataframe(s),
 
 Some example questions and correct chains:
 {chain_examples}
-...
+
+You have access to the following tools: {tool_names}.
+
+The dataframes have the below shape and meta information:
+{df_descriptions}
+ 
 Last few messages between you and user:
 {memory}
 
-Begin!
-"""
+Begin!"""
