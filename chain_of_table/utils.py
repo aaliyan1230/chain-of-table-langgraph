@@ -38,8 +38,9 @@ def save_new_chain(user_query, output_chain, answer):
 
 
 def get_last_chains(how_many=5):
-    try:  # noqa
-        df = pd.read_csv("./data/chains.csv", index_col=0)  # noqa
-        return df.tail(how_many)  # noqa
-    except:  # noqa
-        return ""  # noqa
+    try:
+        df = pd.read_csv("./data/chains.csv", index_col=0)
+        return df.tail(how_many)
+    except Exception as e:
+        print(e)
+        return ""
