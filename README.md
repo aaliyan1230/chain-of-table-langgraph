@@ -3,7 +3,7 @@
 ## Overview
 this repository that demonstrates [Chain-of-Table](https://arxiv.org/abs/2401.04398) reasoning on multiple tables, which is SOTA research by folks at Google and Stanford powered by [LangGraph](https://github.com/langchain-ai/langgraph).
 
-## Getiing started
+## Getting started
 
 Follow these steps to set up:
 
@@ -11,12 +11,20 @@ Follow these steps to set up:
     ```
     git clone https://github.com/aaliyan1230/chain-of-table-langgraph.git
     ```
-2. **Install Dependencies**
+2. **Configure environment**
+    Navigate to the repository directory and run:
+    ```
+    python -m venv venv
+    ```
+    ```
+    source venv/bin/activate
+    ```
+3. **Install Dependencies**
     Navigate to the repository directory and run:
     ```
     pip install -r requirements.txt
     ```
-3. **Configure API Keys**
+4. **Configure API Keys**
     Create a `.env` file in the root directory. Add your OpenAI API key and LangChain API details as follows, if you don't require logging via langsmith, only openai key would do fine too:
     ```
     OPENAI_API_KEY="..."
