@@ -36,6 +36,9 @@ Follow these steps to set up:
 
 ## Usage
 run the main.py as a python script to run the implementation in a terminal
+    ```
+    python chain_of_table/main.py
+    ```
 
 ## Data
 present inside the data/ directory
