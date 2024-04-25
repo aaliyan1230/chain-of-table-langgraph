@@ -35,7 +35,7 @@ Follow these steps to set up:
     ```
 
 ## Usage
-TBD
+run the main.py as a python script to run the implementation in a terminal
 
 ## Data
-TBD
+present inside the data/ directory
